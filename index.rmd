@@ -11,3 +11,8 @@ ___
 
 * Hosted in Github
 * Built by Git and R Markdown with R Studio
+
+<br>
+
+**This website will be a continuing project of my Senior year at SUNY Geneseo.**
+**This is not for a particular class. Just a fun compilation of everything that I have been doing.**
