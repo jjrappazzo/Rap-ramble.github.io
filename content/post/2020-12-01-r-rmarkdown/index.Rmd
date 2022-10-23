@@ -1,5 +1,5 @@
 ---
-title: "Hello R Markdown"
+title: "First Post"
 author: "Jason Rappazzo"
 date: 2022-10-23
 categories: ["R"]
