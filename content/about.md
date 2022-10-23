@@ -3,7 +3,7 @@ date: "2022-10-23"
 title: About
 ---
 
-My name is [**Jason Rappazzo**](https://www.linkedin.com/in/jasonrappazzo/). I am currently a senior at SUNY Geneseo majoring in Economics and Minoring in Data Analytics. In my final two years at [**Geneseo**](https://www.geneseo.edu/), I have developed a passion for Data Analytics. I am exited to build a blogging website that will also improve my coding skills as the same time. 
+My name is [**Jason Rappazzo**](https://www.linkedin.com/in/jasonrappazzo/). I am currently a senior at SUNY Geneseo majoring in Economics and Minoring in Data Analytics. In my final two years at [**Geneseo**](https://www.geneseo.edu/), I have developed a passion for Data Analytics. I am excited to build a blogging website that will also improve my coding skills as the same time. 
 
 <br>
 
