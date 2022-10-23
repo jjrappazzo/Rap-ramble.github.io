@@ -1,6 +1,14 @@
 ---
-date: "2016-05-05T21:48:51-07:00"
+date: "2022-10-23"
 title: About
 ---
 
-This is a "hello world" example website for the [**blogdown**](https://github.com/rstudio/blogdown) package. The theme was forked from [@jrutheiser/hugo-lithium-theme](https://github.com/jrutheiser/hugo-lithium-theme) and modified by [Yihui Xie](https://github.com/yihui/hugo-lithium).
+My name is [**Jason Rappazzo**](www.linkedin.com/in/jasonrappazzo). I am currently a senior at SUNY Geneseo majoring in Economics and Minoring in Data Analytics. In my final two years at [**Geneseo**](https://www.geneseo.edu/), I have developed a passion for Data Analytics. I am exited to build a blogging website that will also improve my coding skills as the same time. 
+
+<br>
+
+I was struggling to come up with a name for this and I figured a lot of what I will be doing is rambling about my life, academic projects I am working on, and other things. I also like alliteration, so I went with Rap Ramble. 
+
+<br>
+
+Feel free to reach out to me with any suggestions you may have! [**jjrappazzo@gmail.com**](https://www.gmail.com)
