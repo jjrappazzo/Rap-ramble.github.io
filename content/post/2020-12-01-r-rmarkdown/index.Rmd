@@ -41,7 +41,7 @@ pie(
 
 
 ```{r}
-summary(Orange) 
+summary(Orange)
 ```
 
 ```{r, echo = FALSE}
