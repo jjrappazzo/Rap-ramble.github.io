@@ -21,7 +21,7 @@ library(readr)
 bucks <- read_csv("starbucks_drinks.csv")
 ```
 
-Caffeine is a large part of why people love coffee and keep coming back to it. Looking at all of the Starbucks drinks offered, let's see which one can give you the biggest jump start to your day!
+Caffeine is a large part of why people love coffee and keep coming back to it. Looking at all of the Starbucks drinks offered, let's see which ones can give you the biggest jump start to your day!
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=6}
 library(tidyverse)
