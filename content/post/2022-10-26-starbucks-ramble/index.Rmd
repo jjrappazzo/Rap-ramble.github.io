@@ -9,7 +9,7 @@ tags:
   - Health
 ---
 
-Coffee, like many, is a constant in everyone's life. I first started drinking coffee in my freshman year at college and never looked back. Well, I have looked back and must say it should be a crime to drink the instant coffee that I used to stick in the microwave. Anyway, that is beyond the point.
+Coffee, like many, is a constant in everyone's life. I first started drinking coffee in my freshman year at college and never looked back. Well, I have looked back and must say it should be a crime to drink the instant coffee that I used to stick in the microwave. Anyway, that is beside the point.
   
 You cannot talk about coffee without [**Starbucks**](https://www.starbucks.com/) being brought up. Founded in 1971 in Seattle, Washington it has become the world's largest coffee chain in the entire world. This may not be very surprising news, but did you know that in 1994, Starbucks came out with carbonated coffee? Interesting. Here are some other [**facts**](https://stories.starbucks.com/stories/2021/10-things-you-did-not-know-about-starbucks/) that you may find surprising.
 
@@ -32,10 +32,15 @@ caf <- bucks %>%
   rename("caffeine" = `Caffeine (mg)` ) %>% 
   mutate("caffeine" = as.numeric(caffeine)) %>% 
   arrange(-caffeine) %>% 
-  top_n(12, caffeine) %>% 
+  top_n(15, caffeine) %>% 
   unique()
 
-correct_caf = caf[-(8:9),]
+correct_caf = caf[-(8:13),]
+
+correct_caf <- correct_caf %>% 
+  select(bev, caffeine) %>% 
+  unique()
+correct_caf = correct_caf[-(9),]
 
 library(ggplot2)
 library(ggthemes)
@@ -46,7 +51,7 @@ ggplot(correct_caf, aes(x = fct_reorder(bev, caffeine), y= caffeine))+
   coord_flip()+
   xlab("")+
   ylab("Caffeine (mg)")+
-  ggtitle("Top 11 Most Caffeinated Starbucks Drinks")+
+  ggtitle("Top 9 Most Caffeinated Starbucks Drinks")+
   theme_tufte()
 ```
 
