@@ -1,7 +1,7 @@
 ---
 title: Starbucks Ramble
 author: Jason Rappazzo
-date: '2022-10-26'
+date: '2022-10-27'
 slug: starbucks-ramble
 categories: []
 tags:
@@ -55,3 +55,66 @@ ggplot(correct_caf, aes(x = fct_reorder(bev, caffeine), y= caffeine))+
   theme_tufte()
 ```
 
+
+<br>
+
+
+Some of us may be watching our weight and might be curious which drinks to try to avoid. Let's dive into which Starbucks drinks have the most calories.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=6}
+library(tidyverse)
+library(ggplot2)
+cal <- bucks %>% 
+  select(Beverage, Calories, Beverage_prep) %>% 
+  mutate(bev = paste(Beverage, Beverage_prep)) %>% 
+  select(bev, Calories) %>% 
+  mutate(Calories = as.numeric(Calories)) %>% 
+  arrange(-Calories) %>% 
+  top_n(9, Calories) %>% 
+  unique() 
+
+correct_cal = cal[-(8),]
+correct_cal = correct_cal[-(11),]
+ggplot(correct_cal, aes(x = fct_reorder(bev, Calories, .desc = FALSE), y= Calories))+
+  geom_bar(stat = 'identity', fill = "tan4") +
+  coord_flip()+
+  xlab("")+
+  ylab("Calories")+
+  ggtitle("Highest Calorie Drinks At Starbucks")+
+  theme_tufte()
+```
+
+
+<br>
+
+For you body builders out there who always need to get your protein in, here is a list of some of the highest protein packed drinks!
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, fig.height=6}
+library(tidyverse)
+library(ggplot2)
+pro <- bucks %>% 
+  select(Beverage, `Protein (g)`, Beverage_prep) %>% 
+  rename("protein" = `Protein (g)` ) %>% 
+  mutate(bev = paste(Beverage,Beverage_prep)) %>% 
+  select(bev, protein) %>% 
+  mutate(protein = as.numeric(protein)) %>% 
+  arrange(-protein) %>% 
+  top_n(9, protein) %>% 
+  unique() 
+
+correct_pro = pro[-(4),]
+correct_pro = correct_pro[-(8),]
+ggplot(correct_pro, aes(x = fct_reorder(bev, protein, .desc = FALSE), y= protein))+
+  geom_bar(stat = 'identity', fill = "tan4") +
+  coord_flip()+
+  xlab("")+
+  ylab("Protein (g)")+
+  ggtitle("Highest Protein Drinks At Starbucks")+
+  theme_tufte()
+```
+
+
+
+<br>
+
+More info about the dataset I used in this post can be found [**here**](https://www.kaggle.com/datasets/syedasimalishah/starbucks-drinks).
