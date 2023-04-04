@@ -1,6 +1,6 @@
 baseurl: /
 languageCode: en-us
-title: Rap Ramble Blog
+title: Jason Rappazzo's Personal Website
 theme: hugo-lithium
 googleAnalytics: ''
 disqusShortname: ''
@@ -19,7 +19,7 @@ menu:
     - name: GitHub
       url: https://github.com/jjrappazzo
     - name: Twitter
-      url: https://twitter.com/jason_rappz
+      url: https://twitter.com/Jason_Rappazzo
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
   MathJaxVersion: 2.7.5
