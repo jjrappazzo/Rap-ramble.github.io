@@ -4,7 +4,12 @@ author: ''
 date: '2023-04-04'
 slug: covid-19-acadmeic-research
 categories: []
-tags: [COVID-19, ]
+tags: 
+  - COVID-19
+  - Manhattan College
+  - Business Analytics Competition
+  - Oxford
+  - Bloomberg
 ---
 # Introduction
 

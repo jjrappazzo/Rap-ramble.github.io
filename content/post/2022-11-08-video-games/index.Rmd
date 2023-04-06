@@ -64,7 +64,10 @@ games_sales10 <-games %>%
     group_by(Name) %>%
     summarise(sum_global_sales = sum(Global_Sales),.groups = 'drop') %>%
     arrange(desc(sum_global_sales))
-games_totalsales <- games_totalsales %>%
+
+games_sales10 <- head(games_sales10, 10)
+
+games_totalsales <- games_sales10 %>%
   mutate(Name = fct_reorder(Name, sum_global_sales, .desc = TRUE))
 
 options(repr.plot.width = 16, repr.plot.height = 8)

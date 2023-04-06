@@ -22,3 +22,89 @@ tags:
 <li>Is there a particular console that generated the most sales?</li>
 </ul>
 <p>To answer these questions, I will be looking at this <a href="https://www.kaggle.com/datasets/gregorut/videogamesales"><strong>dataset</strong></a> to find the answers.</p>
+<pre class="r"><code>sumofsales &lt;- games %&gt;%
+    group_by(Year) %&gt;%
+    summarise(sum_global_sales = sum(Global_Sales),sum_others_sales = sum(Other_Sales),
+              sum_jb_sales = sum(JP_Sales),sum_eu_sales = sum(EU_Sales),
+              sum_na_sales = sum(NA_Sales),.groups = &#39;drop&#39;)
+
+colors &lt;- c(&quot;Global Sales&quot;=&quot;red&quot;, &quot;North America Sales&quot;=&quot;blue&quot;, &quot;Europe Sales&quot;=&quot;green&quot;, &quot;Japan Sales&quot;=&quot;orange&quot;,
+            &quot;The Rest of the World&quot;=&quot;yellow&quot;)
+options(repr.plot.width = 16, repr.plot.height = 8)
+ggplot(data=sumofsales, aes(x= Year)) +
+  geom_line(aes(y= sum_global_sales,group=1,color=&quot;Total Sales&quot;),size = 2, alpha = 0.5)+
+  geom_line(aes(y= sum_na_sales,group=1,color=&quot;North America Sales&quot;),size = 2, alpha = 0.5)+
+  geom_line(aes(y= sum_eu_sales,group=1,color=&quot;Europe Sales&quot;),size = 2, alpha = 0.5)+
+  geom_line(aes(y= sum_jb_sales,group=1,color=&quot;Japan Sales&quot;),size = 2, alpha = 0.5)+
+  geom_line(aes(y= sum_others_sales,group=1,color=&quot;The Rest of the World&quot;),size = 2, alpha = 0.5)+
+  geom_point(aes(y= sum_global_sales)) +
+  geom_point(aes(y= sum_na_sales)) +
+  geom_point(aes(y= sum_eu_sales)) +
+  geom_point(aes(y= sum_jb_sales)) +
+  geom_point(aes(y= sum_others_sales)) +
+  scale_color_manual(name=&quot;Sales&quot;,values = colors)+
+  ggtitle(&quot;Sum of Global Sales by Year&quot;) +
+  ylab(&quot;Millions&quot;) +
+  theme_stata()+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),legend.position=&quot;top&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>games_sales10 &lt;-games %&gt;%
+    group_by(Name) %&gt;%
+    summarise(sum_global_sales = sum(Global_Sales),.groups = &#39;drop&#39;) %&gt;%
+    arrange(desc(sum_global_sales))
+
+games_sales10 &lt;- head(games_sales10, 10)
+
+games_totalsales &lt;- games_sales10 %&gt;%
+  mutate(Name = fct_reorder(Name, sum_global_sales, .desc = TRUE))
+
+options(repr.plot.width = 16, repr.plot.height = 8)
+ggplot(data= games_totalsales, aes(x= Name, y=sum_global_sales)) +
+  geom_bar(stat = &quot;identity&quot;,  aes(x= Name, y=sum_global_sales,fill=Name))+
+  ggtitle(&quot;Top-10 Games by Sales&quot;) +
+  ylab(&quot;Millions&quot;) +
+  xlab(&quot;&quot;)+
+  theme_stata()+
+  theme(axis.text.x = element_text(angle = 70, vjust = 1, hjust=1),
+       legend.position=&quot;none&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>games_sales10 &lt;-games %&gt;%
+    group_by(Year) %&gt;%
+    summarise(sum_global_sales = sum(Global_Sales),.groups = &#39;drop&#39;) %&gt;%
+    arrange(desc(sum_global_sales))
+
+games_totalsales &lt;- games_sales10 %&gt;%
+  mutate(Name = fct_reorder(Year, sum_global_sales, .desc = TRUE))
+
+options(repr.plot.width = 16, repr.plot.height = 8)
+ggplot(data= games_totalsales, aes(x= Year, y=sum_global_sales)) +
+  geom_bar(stat = &quot;identity&quot;,  aes(x= Year, y=sum_global_sales,fill=Name))+
+  ggtitle(&quot;Yearly Sales&quot;) +
+  ylab(&quot;Millions&quot;) +
+  xlab(&quot;&quot;)+
+  theme_stata()+
+  theme(axis.text.x = element_text(angle = 70, vjust = 1, hjust=1),
+       legend.position=&quot;none&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>games_sales10 &lt;-games %&gt;%
+    group_by(Publisher) %&gt;%
+    summarise(sum_global_sales = sum(Global_Sales),.groups = &#39;drop&#39;) %&gt;%
+    arrange(desc(sum_global_sales)) 
+    
+  
+games_sales10 &lt;- head(games_sales10, 10)
+
+
+games_totalsales &lt;- games_sales10 %&gt;%
+  mutate(Name = fct_reorder(Publisher, sum_global_sales, .desc = TRUE))
+
+options(repr.plot.width = 16, repr.plot.height = 8)
+ggplot(data= games_totalsales, aes(x= Publisher, y=sum_global_sales)) +
+  geom_bar(stat = &quot;identity&quot;,  aes(x= Publisher, y=sum_global_sales,fill=Name))+
+  ggtitle(&quot;Yearly Sales&quot;) +
+  ylab(&quot;Millions&quot;) +
+  xlab(&quot;&quot;)+
+  theme_stata()+
+  theme(axis.text.x = element_text(angle = 70, vjust = 1, hjust=1),
+       legend.position=&quot;none&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
