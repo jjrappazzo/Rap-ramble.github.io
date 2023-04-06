@@ -21,3 +21,103 @@ Video games have a massive market. It was valued at [**195 billion (USD)**](http
 * Is there a particular console that generated the most sales?
 
 To answer these questions, I will be looking at this [**dataset**](https://www.kaggle.com/datasets/gregorut/videogamesales) to find the answers.
+
+```{r, include=FALSE}
+library(tidyverse)
+library(readr)
+library(ggthemes)
+
+games <- read_csv('C:/Users/jjrap/OneDrive/Desktop/Coding Portfolio/Portfolio Website/content/post/2022-11-08-video-games/vgsales.csv')
+games <- games[games$Year!='N/A',]
+games <- games[,2:11]
+```
+
+```{r}
+sumofsales <- games %>%
+    group_by(Year) %>%
+    summarise(sum_global_sales = sum(Global_Sales),sum_others_sales = sum(Other_Sales),
+              sum_jb_sales = sum(JP_Sales),sum_eu_sales = sum(EU_Sales),
+              sum_na_sales = sum(NA_Sales),.groups = 'drop')
+
+colors <- c("Global Sales"="red", "North America Sales"="blue", "Europe Sales"="green", "Japan Sales"="orange",
+            "The Rest of the World"="yellow")
+options(repr.plot.width = 16, repr.plot.height = 8)
+ggplot(data=sumofsales, aes(x= Year)) +
+  geom_line(aes(y= sum_global_sales,group=1,color="Total Sales"),size = 2, alpha = 0.5)+
+  geom_line(aes(y= sum_na_sales,group=1,color="North America Sales"),size = 2, alpha = 0.5)+
+  geom_line(aes(y= sum_eu_sales,group=1,color="Europe Sales"),size = 2, alpha = 0.5)+
+  geom_line(aes(y= sum_jb_sales,group=1,color="Japan Sales"),size = 2, alpha = 0.5)+
+  geom_line(aes(y= sum_others_sales,group=1,color="The Rest of the World"),size = 2, alpha = 0.5)+
+  geom_point(aes(y= sum_global_sales)) +
+  geom_point(aes(y= sum_na_sales)) +
+  geom_point(aes(y= sum_eu_sales)) +
+  geom_point(aes(y= sum_jb_sales)) +
+  geom_point(aes(y= sum_others_sales)) +
+  scale_color_manual(name="Sales",values = colors)+
+  ggtitle("Sum of Global Sales by Year") +
+  ylab("Millions") +
+  theme_stata()+
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),legend.position="top")
+```
+```{r}
+games_sales10 <-games %>%
+    group_by(Name) %>%
+    summarise(sum_global_sales = sum(Global_Sales),.groups = 'drop') %>%
+    arrange(desc(sum_global_sales))
+games_totalsales <- games_totalsales %>%
+  mutate(Name = fct_reorder(Name, sum_global_sales, .desc = TRUE))
+
+options(repr.plot.width = 16, repr.plot.height = 8)
+ggplot(data= games_totalsales, aes(x= Name, y=sum_global_sales)) +
+  geom_bar(stat = "identity",  aes(x= Name, y=sum_global_sales,fill=Name))+
+  ggtitle("Top-10 Games by Sales") +
+  ylab("Millions") +
+  xlab("")+
+  theme_stata()+
+  theme(axis.text.x = element_text(angle = 70, vjust = 1, hjust=1),
+       legend.position="none")
+```
+
+```{r}
+games_sales10 <-games %>%
+    group_by(Year) %>%
+    summarise(sum_global_sales = sum(Global_Sales),.groups = 'drop') %>%
+    arrange(desc(sum_global_sales))
+
+games_totalsales <- games_sales10 %>%
+  mutate(Name = fct_reorder(Year, sum_global_sales, .desc = TRUE))
+
+options(repr.plot.width = 16, repr.plot.height = 8)
+ggplot(data= games_totalsales, aes(x= Year, y=sum_global_sales)) +
+  geom_bar(stat = "identity",  aes(x= Year, y=sum_global_sales,fill=Name))+
+  ggtitle("Yearly Sales") +
+  ylab("Millions") +
+  xlab("")+
+  theme_stata()+
+  theme(axis.text.x = element_text(angle = 70, vjust = 1, hjust=1),
+       legend.position="none")
+```
+```{r}
+games_sales10 <-games %>%
+    group_by(Publisher) %>%
+    summarise(sum_global_sales = sum(Global_Sales),.groups = 'drop') %>%
+    arrange(desc(sum_global_sales)) 
+    
+  
+games_sales10 <- head(games_sales10, 10)
+
+
+games_totalsales <- games_sales10 %>%
+  mutate(Name = fct_reorder(Publisher, sum_global_sales, .desc = TRUE))
+
+options(repr.plot.width = 16, repr.plot.height = 8)
+ggplot(data= games_totalsales, aes(x= Publisher, y=sum_global_sales)) +
+  geom_bar(stat = "identity",  aes(x= Publisher, y=sum_global_sales,fill=Name))+
+  ggtitle("Yearly Sales") +
+  ylab("Millions") +
+  xlab("")+
+  theme_stata()+
+  theme(axis.text.x = element_text(angle = 70, vjust = 1, hjust=1),
+       legend.position="none")
+```
+
