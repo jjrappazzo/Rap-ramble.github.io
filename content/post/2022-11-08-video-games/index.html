@@ -29,20 +29,20 @@ tags:
               sum_na_sales = sum(NA_Sales),.groups = &#39;drop&#39;)
 
 colors &lt;- c(&quot;Global Sales&quot;=&quot;red&quot;, &quot;North America Sales&quot;=&quot;blue&quot;, &quot;Europe Sales&quot;=&quot;green&quot;, &quot;Japan Sales&quot;=&quot;orange&quot;,
-            &quot;The Rest of the World&quot;=&quot;yellow&quot;)
-options(repr.plot.width = 16, repr.plot.height = 8)
+            &quot;Other&quot;=&quot;yellow&quot;)
+options(repr.plot.width = 20, repr.plot.height = 8)
 ggplot(data=sumofsales, aes(x= Year)) +
-  geom_line(aes(y= sum_global_sales,group=1,color=&quot;Total Sales&quot;),size = 2, alpha = 0.5)+
+  geom_line(aes(y= sum_global_sales,group=1,color=&quot;Global Sales&quot;),size = 2, alpha = 0.5)+
   geom_line(aes(y= sum_na_sales,group=1,color=&quot;North America Sales&quot;),size = 2, alpha = 0.5)+
   geom_line(aes(y= sum_eu_sales,group=1,color=&quot;Europe Sales&quot;),size = 2, alpha = 0.5)+
   geom_line(aes(y= sum_jb_sales,group=1,color=&quot;Japan Sales&quot;),size = 2, alpha = 0.5)+
-  geom_line(aes(y= sum_others_sales,group=1,color=&quot;The Rest of the World&quot;),size = 2, alpha = 0.5)+
+  geom_line(aes(y= sum_others_sales,group=1,color=&quot;Other&quot;),size = 2, alpha = 0.5)+
   geom_point(aes(y= sum_global_sales)) +
   geom_point(aes(y= sum_na_sales)) +
   geom_point(aes(y= sum_eu_sales)) +
   geom_point(aes(y= sum_jb_sales)) +
   geom_point(aes(y= sum_others_sales)) +
-  scale_color_manual(name=&quot;Sales&quot;,values = colors)+
+  scale_color_manual(name=&quot;&quot;,values = colors)+
   ggtitle(&quot;Sum of Global Sales by Year&quot;) +
   ylab(&quot;Millions&quot;) +
   theme_stata()+
@@ -58,7 +58,7 @@ games_sales10 &lt;- head(games_sales10, 10)
 games_totalsales &lt;- games_sales10 %&gt;%
   mutate(Name = fct_reorder(Name, sum_global_sales, .desc = TRUE))
 
-options(repr.plot.width = 16, repr.plot.height = 8)
+options(repr.plot.width = 20, repr.plot.height = 8)
 ggplot(data= games_totalsales, aes(x= Name, y=sum_global_sales)) +
   geom_bar(stat = &quot;identity&quot;,  aes(x= Name, y=sum_global_sales,fill=Name))+
   ggtitle(&quot;Top-10 Games by Sales&quot;) +
@@ -76,7 +76,7 @@ ggplot(data= games_totalsales, aes(x= Name, y=sum_global_sales)) +
 games_totalsales &lt;- games_sales10 %&gt;%
   mutate(Name = fct_reorder(Year, sum_global_sales, .desc = TRUE))
 
-options(repr.plot.width = 16, repr.plot.height = 8)
+options(repr.plot.width = 20, repr.plot.height = 8)
 ggplot(data= games_totalsales, aes(x= Year, y=sum_global_sales)) +
   geom_bar(stat = &quot;identity&quot;,  aes(x= Year, y=sum_global_sales,fill=Name))+
   ggtitle(&quot;Yearly Sales&quot;) +
@@ -101,7 +101,7 @@ games_totalsales &lt;- games_sales10 %&gt;%
 options(repr.plot.width = 16, repr.plot.height = 8)
 ggplot(data= games_totalsales, aes(x= Publisher, y=sum_global_sales)) +
   geom_bar(stat = &quot;identity&quot;,  aes(x= Publisher, y=sum_global_sales,fill=Name))+
-  ggtitle(&quot;Yearly Sales&quot;) +
+  ggtitle(&quot;Publisher Sales&quot;) +
   ylab(&quot;Millions&quot;) +
   xlab(&quot;&quot;)+
   theme_stata()+
