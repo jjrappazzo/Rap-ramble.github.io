@@ -1,0 +1,18 @@
+---
+title: 'Machine Learning Project: Used Cars'
+author: Jason Rappazzo
+date: '2023-04-09'
+slug: machine-learning-project-used-cars
+categories: []
+tags:
+  - Machine Learning
+  - Python
+  - ANN
+  - Deep Learning
+  - Project
+  - Used Car Prices
+---
+[**Here**]("C:\Users\jjrap\OneDrive\Desktop\Coding Portfolio\Portfolio Website\static\Paper.pdf") is my research on predicting the price of a used car using machine learning and deep learning techniques.
+
+[Download PDF](\Paper.pdf)
+
