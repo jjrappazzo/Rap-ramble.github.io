@@ -12,7 +12,7 @@ tags:
   - Project
   - Used Car Prices
 ---
-This is my research paper on predicting the price of a used car using machine learning and deep learning techniques.
+This is my [research paper](\Paper.pdf) on predicting the price of a used car using machine learning and deep learning techniques.
 
-[Download The pdf Here](\Paper.pdf)
+
 
